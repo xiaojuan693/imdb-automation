@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group = 'com.imdb'
+version = '1.0.0'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Selenide
+    implementation 'com.codeborne:selenide:6.19.1'
+
+    // TestNG
+    testImplementation 'org.testng:testng:7.8.0'
+
+    // Allure
+    testImplementation 'io.qameta.allure:allure-testng:2.24.0'
+    testImplementation 'io.qameta.allure:allure-selenide:2.24.0'
+
+    // Logging
+    testImplementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    testImplementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+
+    // WebDriver Manager
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.5.3'
+}
+
+test {
+    useTestNG() {
+        useDefaultListeners = true
+        suites 'src/test/resources/testng.xml'
+    }
+
+    systemProperties = [
+            'selenide.browser': 'chrome',
+            'selenide.headless': 'false',
+            'selenide.timeout': '20000'  // Increased timeout for cookie handling
+    ]
+
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat = "full"
+    }
+}
+
+allure {
+    version = '2.24.0'
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            testng {
+                adapterVersion.set('2.24.0')
+            }
+        }
+    }
+}

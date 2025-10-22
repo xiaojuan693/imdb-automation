@@ -1,0 +1,28 @@
+# Build outputs
+build/
+target/
+bin/
+*.jar
+*.war
+*.ear
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+
+# Logs
+logs/
+*.log
+
+# Allure
+allure-results/
+allure-report/
+
+# System
+.DS_Store
+Thumbs.db

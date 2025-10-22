@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="IMDb Automation Suite" verbose="1">
+    <test name="IMDb QA Search Tests">
+        <classes>
+            <class name="com.imdb.tests.IMDbSearchTest"/>
+        </classes>
+    </test>
+</suite>
